@@ -3,7 +3,7 @@
 ### Basic Installation
 
 ```
-pip install -e git+https://github.com/scream4ik/django-rest-otp#master@egg=django-rest-otp
+pip install -e git+https://github.com/scream4ik/django-rest-otp@master#egg=django-rest-otp
 ```
 
 - Add `rest_otp` to INSTALLED_APPS
