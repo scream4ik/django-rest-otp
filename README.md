@@ -46,7 +46,7 @@ Now you can transfer otp/recovery user temp key to next step form
 
 ### Endpoints
 
-**GET /otp/totp/**
+**GET /rest-otp/totp/**
 
 response
 ```
@@ -62,7 +62,7 @@ response
 }
 ```
 
-**GET /otp/recovery-codes/**
+**GET /rest-otp/recovery-codes/**
 
 response
 ```
@@ -74,7 +74,7 @@ response
 ]
 ```
 
-**POST /otp/login/otp/**
+**POST /rest-otp/login/otp/**
 
 request
 ```
@@ -98,7 +98,7 @@ response
 }
 ```
 
-**POST /otp/login/recovery-code/**
+**POST /rest-otp/login/recovery-code/**
 
 request
 ```
