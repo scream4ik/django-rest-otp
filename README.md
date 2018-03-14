@@ -9,7 +9,7 @@ pip install -e git+https://github.com/scream4ik/django-rest-otp@master#egg=djang
 - Add `rest_otp` to INSTALLED_APPS
 - Add the following line to URLS
 ```
-path('otp/', include('rest_otp.urls')),
+path('rest-otp/', include('rest_otp.urls')),
 ```
 - Add the following lines to AUTHENTICATION_BACKENDS
 ```
@@ -40,7 +40,7 @@ In your Login view after user credentials validate call function `tmp_user_id`. 
 >>> from rest_otp.helpers import tmp_user_id
 >>> data = tmp_user_id(1)
 >>> print(data)
-{'tmp_user_id': {'otp': 'Pe00izDPDVUN', 'recovery': 'KwSdJl7qFF77'}}
+{'otp': 'Pe00izDPDVUN', 'recovery': 'KwSdJl7qFF77'}
 ```
 Now you can transfer otp/recovery user temp key to next step form
 
