@@ -2,6 +2,7 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 
 from django.contrib.auth import login as django_login
+from django.conf import settings
 
 from .serializers import (
     OtpSerializer,
@@ -11,12 +12,17 @@ from .serializers import (
 )
 from .models import Otp, RecoveryCode
 from .helpers import jwt_encode
-from .app_settings import JWT_SERIALIZER
+from .utils import import_callable
+from .serializers import JWTSerializer
 
 try:
     from drf_yasg.utils import swagger_auto_schema
 except ImportError:
     from .decorators import dummy_auto_schema as swagger_auto_schema
+
+JWT_SERIALIZER = import_callable(
+    getattr(settings, 'REST_OTP_JWT_SERIALIZER', JWTSerializer)
+)
 
 
 class OtpUserView(generics.RetrieveAPIView):
