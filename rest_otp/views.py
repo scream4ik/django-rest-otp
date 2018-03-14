@@ -43,7 +43,7 @@ class RecoveryCodeListView(generics.ListAPIView):
 
 class LoginView(generics.GenericAPIView):
     """
-
+    Base view for login view
     """
     permission_classes = (permissions.AllowAny,)
 
