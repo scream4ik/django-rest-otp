@@ -42,7 +42,7 @@ def tmp_user_id(user_id: int) -> dict:
     data = Dict(key='2fa_recovery_code', redis=conn)
     data.update({recovery_user_id: user_id})
 
-    return {'tmp_user_id': {'otp': otp_user_id, 'recovery': recovery_user_id}}
+    return {'otp': otp_user_id, 'recovery': recovery_user_id}
 
 
 def jwt_encode(user):
