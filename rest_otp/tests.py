@@ -30,7 +30,7 @@ class LoginOtpViewTest(SetUpUserMixin, APITestCase):
         tmp_data = tmp_user_id(self.user.id)
 
         data = {
-            'tmp_user_id': tmp_data['tmp_user_id']['otp'],
+            'tmp_user_id': tmp_data['otp'],
             'otp_code': self.user.otp.get_otp_code()
         }
         response = self.client.post(
@@ -47,7 +47,7 @@ class LoginOtpViewTest(SetUpUserMixin, APITestCase):
         tmp_data = tmp_user_id(self.user.id)
 
         data = {
-            'tmp_user_id': tmp_data['tmp_user_id']['otp'],
+            'tmp_user_id': tmp_data['otp'],
             'otp_code': 'otp fail code'
         }
         response = self.client.post(reverse('login_otp'), data=data)
@@ -67,7 +67,7 @@ class LoginRecoveryCodeViewTest(SetUpUserMixin, APITestCase):
         tmp_data = tmp_user_id(self.user.id)
 
         data = {
-            'tmp_user_id': tmp_data['tmp_user_id']['recovery'],
+            'tmp_user_id': tmp_data['recovery'],
             'recovery_code': self.user.recovery_codes.first().code
         }
         response = self.client.post(reverse('login_recovery_code'), data=data)
@@ -82,7 +82,7 @@ class LoginRecoveryCodeViewTest(SetUpUserMixin, APITestCase):
         tmp_data = tmp_user_id(self.user.id)
 
         data = {
-            'tmp_user_id': tmp_data['tmp_user_id']['recovery'],
+            'tmp_user_id': tmp_data['recovery'],
             'recovery_code': 'recovery code'
         }
         response = self.client.post(reverse('login_recovery_code'), data=data)
