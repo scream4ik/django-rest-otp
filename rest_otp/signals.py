@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.conf import settings
 
 from .helpers import create_otp, create_recovery
+from .app_settings import RECOVERY_CODES_RANGE
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -20,5 +21,5 @@ def generate_recovery_handler(sender, instance=None, created=False, **kwargs):
     Signal create recovery codes for new user
     """
     if created:
-        for i in range(16):
+        for i in range(RECOVERY_CODES_RANGE):
             create_recovery(instance)
