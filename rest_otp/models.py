@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
+from .app_settings import QR_VERSION, QR_BOX_SIZE, QR_BORDER
+
 import pyotp
 import qrcode
 
@@ -59,10 +61,10 @@ class Otp(models.Model):
         Get QR code from otp uri
         """
         qr = qrcode.QRCode(
-            version=1,
+            version=QR_VERSION,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=10,
-            border=4
+            box_size=QR_BOX_SIZE,
+            border=QR_BORDER
         )
         qr.add_data(self.get_otp_uri())
         qr.make(fit=True)

@@ -34,6 +34,9 @@ path('rest-otp/', include('rest_otp.urls')),
 - `REST_OTP_JWT_SERIALIZER` - response for successful authentication
 - `REST_OTP_USER_DETAILS_SERIALIZER` - serializer that include in `REST_OTP_JWT_SERIALIZER`
 - `REST_OTP_RECOVERY_CODES_RANGE` - how much to generate recovery codes for user (default: 16)
+- `REST_OTP_QR_VERSION` - controls the size of the QR Code (default 1). More info https://pypi.python.org/pypi/qrcode
+- `REST_OTP_QR_BOX_SIZE` - the box_size parameter controls how many pixels each “box” of the QR code is. (default 10). More info https://pypi.python.org/pypi/qrcode
+- `REST_OTP_QR_BORDER` - the border parameter controls how many boxes thick the border should be (default 4). More info https://pypi.python.org/pypi/qrcode
 
 ### How to use
 In your Login view after user credentials validate call function `tmp_user_id`. Function get param user_id and return dict with temperary codes for OTP and recovery auth.
