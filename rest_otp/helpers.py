@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.utils.crypto import get_random_string
 
 from .models import Otp, RecoveryCode
-from .app_settings import ISSUER_NAME, REDIS_URL
+from .app_settings import ISSUER_NAME, REDIS_URL, ALLOWED_CHARS
 
 import pyotp
 from redis_collections import Dict
@@ -25,7 +25,9 @@ def create_recovery(user: get_user_model()) -> RecoveryCode:
     """
     Function create recovery code
     """
-    return RecoveryCode.objects.create(user=user, code=get_random_string())
+    return RecoveryCode.objects.create(
+        user=user, code=get_random_string(allowed_chars=ALLOWED_CHARS)
+    )
 
 
 def tmp_user_id(user_id: int) -> dict:

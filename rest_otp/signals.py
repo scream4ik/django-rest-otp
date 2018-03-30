@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from django.conf import settings
 
 from .helpers import create_otp, create_recovery
-from .app_settings import RECOVERY_CODES_RANGE, CREATE_RECOVERY_CODE_FUNCTION
+from .app_settings import RECOVERY_CODES_RANGE
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -22,7 +22,4 @@ def generate_recovery_handler(sender, instance=None, created=False, **kwargs):
     """
     if created:
         for i in range(RECOVERY_CODES_RANGE):
-            if CREATE_RECOVERY_CODE_FUNCTION is not None:
-                CREATE_RECOVERY_CODE_FUNCTION(instance)
-            else:
-                create_recovery(instance)
+            create_recovery(instance)

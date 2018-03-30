@@ -7,6 +7,8 @@ RECOVERY_CODES_RANGE = getattr(settings, 'REST_OTP_RECOVERY_CODES_RANGE', 16)
 QR_VERSION = getattr(settings, 'REST_OTP_QR_VERSION', 1)
 QR_BOX_SIZE = getattr(settings, 'REST_OTP_QR_BOX_SIZE', 10)
 QR_BORDER = getattr(settings, 'REST_OTP_QR_BORDER', 4)
-CREATE_RECOVERY_CODE_FUNCTION = getattr(
-    settings, 'REST_OTP_CREATE_RECOVERY_CODE_FUNCTION', None
+ALLOWED_CHARS = getattr(
+    settings,
+    'REST_OTP_ALLOWED_CHARS',
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 )
