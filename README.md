@@ -37,6 +37,7 @@ path('rest-otp/', include('rest_otp.urls')),
 - `REST_OTP_QR_VERSION` - controls the size of the QR Code (default 1). More info https://pypi.python.org/pypi/qrcode
 - `REST_OTP_QR_BOX_SIZE` - the box_size parameter controls how many pixels each “box” of the QR code is. (default 10). More info https://pypi.python.org/pypi/qrcode
 - `REST_OTP_QR_BORDER` - the border parameter controls how many boxes thick the border should be (default 4). More info https://pypi.python.org/pypi/qrcode
+- `REST_OTP_CREATE_RECOVERY_CODE_FUNCTION` - set custom function for recovery code creation (get argument user instance)
 
 ### How to use
 In your Login view after user credentials validate call function `tmp_user_id`. Function get param user_id and return dict with temperary codes for OTP and recovery auth.
