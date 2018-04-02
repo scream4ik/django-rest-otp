@@ -15,11 +15,6 @@ from .helpers import jwt_encode
 from .utils import import_callable
 from .serializers import JWTSerializer
 
-try:
-    from drf_yasg.utils import swagger_auto_schema
-except ImportError:
-    from .decorators import dummy_auto_schema as swagger_auto_schema
-
 JWT_SERIALIZER = import_callable(
     getattr(settings, 'REST_OTP_JWT_SERIALIZER', JWTSerializer)
 )
@@ -53,7 +48,6 @@ class LoginView(generics.GenericAPIView):
     """
     permission_classes = (permissions.AllowAny,)
 
-    @swagger_auto_schema(responses={200: JWT_SERIALIZER})
     def post(self, request, *args, **kwargs):
         self.serializer = self.get_serializer(
             data=request.data, context={'request': request}
