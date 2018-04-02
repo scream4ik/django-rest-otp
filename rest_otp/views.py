@@ -8,15 +8,22 @@ from .serializers import (
     OtpSerializer,
     RecoveryCodeSerializer,
     LoginOtpSerializer,
-    LoginRecoveryCodeSerializer
+    LoginRecoveryCodeSerializer,
+    JWTSerializer
 )
 from .models import Otp, RecoveryCode
 from .helpers import jwt_encode
 from .utils import import_callable
-from .serializers import JWTSerializer
 
 JWT_SERIALIZER = import_callable(
     getattr(settings, 'REST_OTP_JWT_SERIALIZER', JWTSerializer)
+)
+LOGIN_RECOVERY_CODE_SERIALIZER = import_callable(
+    getattr(
+        settings,
+        'REST_OPT_LOGIN_RECOVERY_CODE_SERIALIZER',
+        LoginRecoveryCodeSerializer
+    )
 )
 
 
@@ -93,4 +100,4 @@ class LoginRecoveryCodeView(LoginView):
 
     And then you need send tmp code from login endpoint with recovery code
     """
-    serializer_class = LoginRecoveryCodeSerializer
+    serializer_class = LOGIN_RECOVERY_CODE_SERIALIZER

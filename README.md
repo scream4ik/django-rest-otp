@@ -33,6 +33,7 @@ path('rest-otp/', include('rest_otp.urls')),
 - `REST_OTP_REDIS_URL` - redis url scheme. For example `'redis://h:{}@{}:{}/0'.format(os.environ.get('REDIS_PASSWORD'), os.environ.get('REDIS_HOST'), os.environ.get('REDIS_PORT'))`
 - `REST_OTP_JWT_SERIALIZER` - response for successful authentication
 - `REST_OTP_USER_DETAILS_SERIALIZER` - serializer that include in `REST_OTP_JWT_SERIALIZER`
+- `REST_OPT_LOGIN_RECOVERY_CODE_SERIALIZER` - serializer for login with recovery code
 - `REST_OTP_RECOVERY_CODES_RANGE` - how much to generate recovery codes for user (default: 16)
 - `REST_OTP_QR_VERSION` - controls the size of the QR Code (default 1). More info https://pypi.python.org/pypi/qrcode
 - `REST_OTP_QR_BOX_SIZE` - the box_size parameter controls how many pixels each “box” of the QR code is. (default 10). More info https://pypi.python.org/pypi/qrcode
