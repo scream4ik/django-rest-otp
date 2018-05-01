@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'Django>=2.0,<2.1',
-        'djangorestframework>=3.7,<3.8',
+        'djangorestframework>=3.7,<3.9',
         'djangorestframework-jwt<1.12',
         'Pillow',
         'pyotp<2.3',
