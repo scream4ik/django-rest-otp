@@ -44,6 +44,7 @@ class RecoveryCodeListView(generics.ListAPIView):
     """
     serializer_class = RecoveryCodeSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    pagination_class = None
 
     def get_queryset(self):
         return RecoveryCode.objects.filter(user=self.request.user)
