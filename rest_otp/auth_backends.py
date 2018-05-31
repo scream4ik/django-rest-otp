@@ -26,7 +26,10 @@ class OtpAuthenticationBackend(ModelBackend):
             if user.otp.get_otp_code() != otp_code:
                 return None
 
-        del data[tmp_user_id]
+        try:
+            del data[tmp_user_id]
+        except KeyError:
+            pass
         return user
 
 
@@ -55,5 +58,8 @@ class RecoveryCodeAuthenticationBackend(ModelBackend):
             except RecoveryCode.DoesNotExist:
                 pass
 
-        del data[tmp_user_id]
+        try:
+            del data[tmp_user_id]
+        except KeyError:
+            pass
         return user
