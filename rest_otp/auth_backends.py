@@ -21,11 +21,12 @@ class OtpAuthenticationBackend(ModelBackend):
         data = Dict(key='2fa_otp', redis=conn)
 
         if tmp_user_id in data:
-            user = get_user_model().objects.get(pk=data.pop(tmp_user_id))
+            user = get_user_model().objects.get(pk=data.get(tmp_user_id))
 
             if user.otp.get_otp_code() != otp_code:
                 return None
 
+        del data[tmp_user_id]
         return user
 
 
@@ -43,7 +44,7 @@ class RecoveryCodeAuthenticationBackend(ModelBackend):
 
         if tmp_user_id in data:
             try:
-                user = get_user_model().objects.get(pk=data.pop(tmp_user_id))
+                user = get_user_model().objects.get(pk=data.get(tmp_user_id))
 
                 code = RecoveryCode.objects.get(
                     user=user, code=recovery_code, is_enable=True
@@ -54,4 +55,5 @@ class RecoveryCodeAuthenticationBackend(ModelBackend):
             except RecoveryCode.DoesNotExist:
                 pass
 
+        del data[tmp_user_id]
         return user
