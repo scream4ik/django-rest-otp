@@ -19,8 +19,8 @@ path('rest-otp/', include('rest_otp.urls')),
 
 ### Requirements
 - redis-server
-- Django>=2.0,<2.1
-- djangorestframework>=3.7,<3.8
+- Django>=2.0
+- djangorestframework>=3.7
 - djangorestframework-jwt<1.12
 - Pillow
 - pyotp<2.3
