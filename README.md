@@ -3,7 +3,7 @@
 ### Basic Installation
 
 ```
-pip install -e git+https://github.com/scream4ik/django-rest-otp@master#egg=django-rest-otp
+pip install https://github.com/scream4ik/django-rest-otp/archive/master.zip
 ```
 
 - Add `rest_otp` to INSTALLED_APPS
@@ -25,7 +25,7 @@ path('rest-otp/', include('rest_otp.urls')),
 - Pillow
 - pyotp<2.3
 - qrcode<5.4
-- redis-collections>=0.4,<0.5
+- redis-collections<0.6
 
 ### Configuration
 
