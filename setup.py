@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-rest-otp',
-    version='0.1.12',
+    version='0.1.13',
     packages=find_packages(),
     install_requires=[
         'Django>=2.0',
@@ -11,6 +11,6 @@ setup(
         'Pillow',
         'pyotp<2.3',
         'qrcode<7.0',
-        'redis-collections<0.6'
+        'redis-collections<0.7'
     ]
 )
