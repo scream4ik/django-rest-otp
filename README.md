@@ -25,7 +25,7 @@ path('rest-otp/', include('rest_otp.urls')),
 - Pillow
 - pyotp<2.3
 - qrcode<5.4
-- redis-collections<0.6
+- redis-collections<0.7
 
 ### Configuration
 
