@@ -11,6 +11,6 @@ setup(
         'Pillow',
         'pyotp<2.3',
         'qrcode<7.0',
-        'redis-collections<0.7'
+        'redis-collections<1'
     ]
 )
