@@ -23,7 +23,7 @@ path('rest-otp/', include('rest_otp.urls')),
 - djangorestframework>=3.7
 - djangorestframework-jwt<1.12
 - Pillow
-- pyotp<2.3
+- pyotp==2.3.0
 - qrcode<7
 - redis-collections<1
 
