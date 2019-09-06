@@ -2,10 +2,7 @@ from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
 
 from .models import RecoveryCode
-from .app_settings import REDIS_URL
-
-from redis_collections import Dict
-from redis import StrictRedis
+from .helpers import get_2fa_otp_dict, get_2fa_recovery_code_dict
 
 
 class OtpAuthenticationBackend(ModelBackend):
@@ -17,8 +14,7 @@ class OtpAuthenticationBackend(ModelBackend):
         tmp_user_id = credentials.get('tmp_user_id')
         otp_code = credentials.get('otp_code')
 
-        conn = StrictRedis.from_url(REDIS_URL)
-        data = Dict(key='2fa_otp', redis=conn)
+        data = get_2fa_otp_dict()
 
         if tmp_user_id in data:
             user = get_user_model().objects.get(pk=data.get(tmp_user_id))
@@ -42,8 +38,7 @@ class RecoveryCodeAuthenticationBackend(ModelBackend):
         tmp_user_id = credentials.get('tmp_user_id')
         recovery_code = credentials.get('recovery_code')
 
-        conn = StrictRedis.from_url(REDIS_URL)
-        data = Dict(key='2fa_recovery_code', redis=conn)
+        data = get_2fa_recovery_code_dict()
 
         if tmp_user_id in data:
             try:

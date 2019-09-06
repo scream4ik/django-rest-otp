@@ -7,6 +7,28 @@ from .app_settings import ISSUER_NAME, REDIS_URL, ALLOWED_CHARS
 import pyotp
 from redis_collections import Dict
 from redis import StrictRedis
+from redis.client import Redis
+
+
+def get_redis_connection() -> Redis:
+    """
+    Return a Redis client object configured from the given URL
+    """
+    return StrictRedis.from_url(REDIS_URL)
+
+
+def get_2fa_otp_dict() -> Dict:
+    """
+    Function return dict from redis with otp data
+    """
+    return Dict(key='2fa_otp', redis=get_redis_connection())
+
+
+def get_2fa_recovery_code_dict() -> Dict:
+    """
+    Function return dict from redis with recovery code data
+    """
+    return Dict(key='2fa_recovery_code', redis=get_redis_connection())
 
 
 def create_otp(user: get_user_model(), name: str) -> Otp:
@@ -37,11 +59,10 @@ def tmp_user_id(user_id: int) -> dict:
     """
     otp_user_id = get_random_string()
     recovery_user_id = get_random_string()
-    conn = StrictRedis.from_url(REDIS_URL)
 
-    data = Dict(key='2fa_otp', redis=conn)
+    data = get_2fa_otp_dict()
     data.update({otp_user_id: user_id})
-    data = Dict(key='2fa_recovery_code', redis=conn)
+    data = get_2fa_recovery_code_dict()
     data.update({recovery_user_id: user_id})
 
     return {'otp': otp_user_id, 'recovery': recovery_user_id}
