@@ -48,7 +48,7 @@ class LoginOtpSerializer(serializers.Serializer):
 
         if user is None:
             raise serializers.ValidationError(
-                _('Unable to log in with provided credentials.')
+                _('Wrong OTP code.')
             )
 
         if not user.is_active:
@@ -85,7 +85,7 @@ class LoginRecoveryCodeSerializer(serializers.Serializer):
 
         if user is None:
             raise serializers.ValidationError(
-                _('Unable to log in with provided credentials.')
+                _('Wrong recovery code.')
             )
 
         if not user.is_active:
