@@ -61,9 +61,9 @@ def tmp_user_id(user_id: int) -> dict:
     recovery_user_id = get_random_string()
 
     data = get_2fa_otp_dict()
-    data.update({otp_user_id: user_id})
+    data[otp_user_id] = user_id
     data = get_2fa_recovery_code_dict()
-    data.update({recovery_user_id: user_id})
+    data[recovery_user_id] = user_id
 
     return {'otp': otp_user_id, 'recovery': recovery_user_id}
 
